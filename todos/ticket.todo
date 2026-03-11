@@ -7,7 +7,7 @@ Wo weiter machen:
 Ticket Detail:
 ✔ Layout bauen @done(26-03-15 10:48)
 ✔ Ticketdaten anzeigen @done(26-03-15 10:48)
-☐ Mockdaten in test pages importieren und dann sauber im ticketDetails Template einbauen
+✔ Mockdaten in test pages importieren und dann sauber im ticketDetails Template einbauen @done(26-03-16 12:13)
 ☐ Daten flexibel erstellen per Logik
 ☐ Ticket bearbeiten (title, description, deadline)
 ☐ Status ändern
