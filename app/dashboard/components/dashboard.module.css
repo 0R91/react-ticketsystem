@@ -1,0 +1,17 @@
+.tabContainer {
+  border: 1px solid white;
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+}
+
+.button {
+  cursor: pointer;
+}
+
+.tabContent {
+}
+
+.hidden {
+  display: none;
+}
