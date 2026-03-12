@@ -1,0 +1,23 @@
+Ticket Detail:
+☐ Layout bauen
+☐ Ticketdaten anzeigen
+☐ Ticket bearbeiten (title, description, deadline)
+☐ Status ändern
+☐ Priority ändern
+☐ Kommentare anzeigen + hinzufügen
+☐ TimeEntries anzeigen + hinzufügen
+☐ Mockdaten erstellen
+
+Ticket List:
+☐ Liste anzeigen
+☐ Tickets aus Mockdaten rendern
+☐ Search bauen
+☐ Status-Filter bauen
+☐ Ticket auswählen / öffnen
+
+Ticket Card:
+☐ Card Layout bauen
+☐ Ticketinfos anzeigen
+☐ Status anzeigen
+☐ Priority anzeigen
+☐ Klick für Detailansicht

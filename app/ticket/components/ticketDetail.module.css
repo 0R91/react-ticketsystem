@@ -1,0 +1,45 @@
+.ticketDetailContainer {
+  background-color: var(--background);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 30px;
+  width: min(80%, 800px);
+}
+
+.ticketHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.ticketHeaderContent {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.ticketTitle,
+.ticketId {
+  background-color: var(--main);
+  border: 1px solid #737373;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.ticketTitle :first-child,
+.ticketId :first-child {
+  font-weight: 100;
+}
+
+.ticketMeta {
+  background-color: var(--main);
+  border: 1px solid #737373;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
