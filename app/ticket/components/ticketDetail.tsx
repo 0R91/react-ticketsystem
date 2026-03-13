@@ -18,41 +18,54 @@ function TicketDetail() {
       </div>
 
       <div className={styles.ticketMeta}>
-        <div className={styles.ticketStatus}>Status: In Progress</div>
-        <div className={styles.ticketPriority}>Priority: Medium</div>
-        <div className={styles.ticketDeadline}>Deadline: 25.03.2026</div>
+        <div className={styles.ticketStatus}>
+          <p>Status</p>
+          <p>In Progress</p>
+        </div>
+        <div className={styles.ticketPriority}>
+          <p>Priority</p>
+          <p>Medium</p>
+        </div>
+        <div className={styles.ticketDeadline}>
+          <p>Deadline</p>
+          <p>25.03.2026</p>
+        </div>
       </div>
 
       <div className={styles.ticketDescription}>
         <div className={styles.ticketDescriptionText}>
-          Die Rebellen-Agenten Miniaturen grundieren und anschließend mit
-          Basisfarben bemalen. Fokus auf Gesichter und Ausrüstung.
-        </div>
-      </div>
-
-      <div className={styles.ticketComments}>
-        <div className={styles.ticketCommentsList}>
-          <div>
-            <strong>Max:</strong> Grundierung ist fertig.
-          </div>
-          <div>
-            <strong>Anna:</strong> Hauttöne sehen gut aus, vielleicht noch ein
-            Wash.
-          </div>
-        </div>
-
-        <div className={styles.ticketCommentForm}>
-          <input placeholder="Kommentar schreiben..." />
-          <button>Kommentar hinzufügen</button>
+          <p>Beschreibung</p>
+          <p>
+            Die Rebellen-Agenten Miniaturen grundieren und anschließend mit
+            Basisfarben bemalen. Fokus auf Gesichter und Ausrüstung.
+          </p>
         </div>
       </div>
 
       <div className={styles.ticketTimeEntries}>
         <div className={styles.ticketTimeEntryList}>
-          <div>12.03.2026 — 09:00 - 10:30 — Grundierung</div>
-          <div>12.03.2026 — 11:00 - 12:00 — Basisfarben</div>
+          <p>Zeitbuchungen</p>
+          <div className={styles.ticketTimeEntryListContent}>
+            <p>12.03.2026</p>
+            <p>9:00 - 10:30</p>
+            <p>Grundierung</p>
+          </div>
+          <div className={styles.ticketTimeEntryListContent}>
+            <p>12.03.2026</p>
+            <p>9:00 - 10:30</p>
+            <p>Grundierung</p>
+          </div>
+          <div className={styles.ticketTimeEntryListContent}>
+            <p>12.03.2026</p>
+            <p>9:00 - 10:30</p>
+            <p>Grundierung</p>
+          </div>
+          <div className={styles.ticketTimeEntryListContent}>
+            <p>12.03.2026</p>
+            <p>9:00 - 10:30</p>
+            <p>Grundierung</p>
+          </div>
         </div>
-
         <div className={styles.ticketTimeEntryForm}>
           <button>Zeit buchen</button>
         </div>

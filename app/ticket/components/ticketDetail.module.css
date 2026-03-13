@@ -8,38 +8,50 @@
   width: min(80%, 800px);
 }
 
-.ticketHeader {
+.ticketHeader,
+.ticketHeaderContent,
+.ticketMeta > * {
   display: flex;
   flex-direction: column;
-  gap: 20px;
 }
 
+.ticketHeader,
 .ticketHeaderContent {
-  display: flex;
-  flex-direction: column;
   gap: 20px;
 }
 
 .ticketTitle,
-.ticketId {
+.ticketId,
+.ticketMeta,
+.ticketDescription {
   background-color: var(--main);
   border: 1px solid #737373;
   border-radius: 10px;
+  padding: 10px;
+}
+
+.ticketTitle,
+.ticketId {
   display: flex;
   flex-direction: column;
-  padding: 10px;
 }
 
 .ticketTitle :first-child,
-.ticketId :first-child {
+.ticketId :first-child,
+.ticketStatus :first-child,
+.ticketPriority :first-child,
+.ticketDeadline :first-child,
+.ticketDescriptionText :first-child {
   font-weight: 100;
 }
 
-.ticketMeta {
-  background-color: var(--main);
-  border: 1px solid #737373;
-  border-radius: 10px;
+.ticketMeta,
+.ticketDescription {
   display: flex;
-  flex-direction: column;
-  padding: 10px;
+  justify-content: space-between;
+}
+
+.ticketTimeEntryListContent {
+  display: flex;
+  gap: 20px;
 }
