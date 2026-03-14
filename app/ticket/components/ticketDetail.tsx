@@ -2,38 +2,42 @@ import styles from './ticketDetail.module.css'
 
 function TicketDetail() {
   return (
-    <div className={styles.ticketDetailContainer}>
-      <div className={styles.ticketHeader}>
+    <div className={styles.root}>
+      <div className={styles.header}>
         <h2>Ticket Details</h2>
-        <div className={styles.ticketHeaderContent}>
-          <div className={styles.ticketTitle}>
+
+        <div className={styles.headerContent}>
+          <div className={styles.title}>
             <p>Ticketname</p>
             <p>Painting Rebel agent</p>
           </div>
-          <div className={styles.ticketId}>
+
+          <div className={styles.id}>
             <p>Ticket-ID</p>
             <span>#t-001</span>
           </div>
         </div>
       </div>
 
-      <div className={styles.ticketMeta}>
-        <div className={styles.ticketStatus}>
+      <div className={styles.meta}>
+        <div className={styles.status}>
           <p>Status</p>
           <p>In Progress</p>
         </div>
-        <div className={styles.ticketPriority}>
+
+        <div className={styles.priority}>
           <p>Priority</p>
           <p>Medium</p>
         </div>
-        <div className={styles.ticketDeadline}>
+
+        <div className={styles.deadline}>
           <p>Deadline</p>
           <p>25.03.2026</p>
         </div>
       </div>
 
-      <div className={styles.ticketDescription}>
-        <div className={styles.ticketDescriptionText}>
+      <div className={styles.description}>
+        <div className={styles.descriptionText}>
           <p>Beschreibung</p>
           <p>
             Die Rebellen-Agenten Miniaturen grundieren und anschließend mit
@@ -42,31 +46,30 @@ function TicketDetail() {
         </div>
       </div>
 
-      <div className={styles.ticketTimeEntries}>
-        <div className={styles.ticketTimeEntryList}>
+      <div className={styles.timeEntries}>
+        <div className={styles.timeList}>
           <p>Zeitbuchungen</p>
-          <div className={styles.ticketTimeEntryListContent}>
+
+          <div className={styles.timeGrid}>
+            <p className={styles.gridHeader}>Datum</p>
+            <p className={styles.gridHeader}>Zeit</p>
+            <p className={styles.gridHeader}>Tätigkeit</p>
+
             <p>12.03.2026</p>
             <p>9:00 - 10:30</p>
             <p>Grundierung</p>
-          </div>
-          <div className={styles.ticketTimeEntryListContent}>
+
             <p>12.03.2026</p>
             <p>9:00 - 10:30</p>
             <p>Grundierung</p>
-          </div>
-          <div className={styles.ticketTimeEntryListContent}>
-            <p>12.03.2026</p>
-            <p>9:00 - 10:30</p>
-            <p>Grundierung</p>
-          </div>
-          <div className={styles.ticketTimeEntryListContent}>
+
             <p>12.03.2026</p>
             <p>9:00 - 10:30</p>
             <p>Grundierung</p>
           </div>
         </div>
-        <div className={styles.ticketTimeEntryForm}>
+
+        <div className={styles.timeForm}>
           <button>Zeit buchen</button>
         </div>
       </div>

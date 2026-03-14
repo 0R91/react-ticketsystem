@@ -1,4 +1,4 @@
-.ticketDetailContainer {
+.root {
   background-color: var(--background);
   border-radius: 12px;
   display: flex;
@@ -8,50 +8,58 @@
   width: min(80%, 800px);
 }
 
-.ticketHeader,
-.ticketHeaderContent,
-.ticketMeta > * {
+.header,
+.headerContent,
+.meta > * {
   display: flex;
   flex-direction: column;
 }
 
-.ticketHeader,
-.ticketHeaderContent {
+.header,
+.headerContent {
   gap: 20px;
 }
 
-.ticketTitle,
-.ticketId,
-.ticketMeta,
-.ticketDescription {
+.title,
+.id,
+.meta,
+.description,
+.timeList {
   background-color: var(--main);
   border: 1px solid #737373;
   border-radius: 10px;
   padding: 10px;
 }
 
-.ticketTitle,
-.ticketId {
+.title,
+.id {
   display: flex;
   flex-direction: column;
 }
 
-.ticketTitle :first-child,
-.ticketId :first-child,
-.ticketStatus :first-child,
-.ticketPriority :first-child,
-.ticketDeadline :first-child,
-.ticketDescriptionText :first-child {
+.title :first-child,
+.id :first-child,
+.status :first-child,
+.priority :first-child,
+.deadline :first-child,
+.descriptionText :first-child,
+.timeList > :first-child {
   font-weight: 100;
 }
 
-.ticketMeta,
-.ticketDescription {
+.meta,
+.description {
   display: flex;
   justify-content: space-between;
 }
 
-.ticketTimeEntryListContent {
-  display: flex;
-  gap: 20px;
+.timeGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 5fr;
+  row-gap: 8px;
+  column-gap: 16px;
+}
+
+.gridHeader {
+  font-weight: 600;
 }
