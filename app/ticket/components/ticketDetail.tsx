@@ -1,6 +1,30 @@
 import styles from './ticketDetail.module.css'
 
-function TicketDetail() {
+import { ticketMock } from '../../../mock/ticketMock'
+
+interface TimeEntry {
+  id: string
+  date: string
+  startTime: string
+  endTime: string
+  activity: string
+}
+
+type Data = {
+  id: string
+  name: string
+  status: string
+  priority: string
+  deadline: string
+  description: string
+  timeEntries: TimeEntry[]
+}
+
+interface TicketDetailProps {
+  ticket: Data
+}
+
+function TicketDetail({ ticket }: TicketDetailProps) {
   return (
     <div className={styles.root}>
       <div className={styles.header}>
@@ -82,5 +106,4 @@ function TicketDetail() {
     </div>
   )
 }
-
 export default TicketDetail
