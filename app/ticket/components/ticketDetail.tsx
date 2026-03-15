@@ -57,22 +57,28 @@ function TicketDetail() {
 
             <p>12.03.2026</p>
             <p>9:00 - 10:30</p>
-            <p>Grundierung</p>
+            <p className={styles.gridDescription}>Grundierung</p>
 
             <p>12.03.2026</p>
             <p>9:00 - 10:30</p>
-            <p>Grundierung</p>
+            <p className={styles.gridDescription}>
+              In diesem Ticket werden die Arbeitsschritte zur Bemalung der
+              Rebellen-Agenten dokumentiert. Zuerst erfolgt die Grundierung der
+              Miniaturen, anschließend werden die Basisfarben aufgetragen. Der
+              Fokus liegt dabei besonders auf den Gesichtern sowie der
+              Ausrüstung der Figuren.
+            </p>
 
             <p>12.03.2026</p>
             <p>9:00 - 10:30</p>
-            <p>Grundierung</p>
+            <p className={styles.gridDescription}>Grundierung</p>
           </div>
         </div>
-
-        <div className={styles.timeForm}>
-          <button>Zeit buchen</button>
-        </div>
       </div>
+      <div className={styles.timeEntryButtonContainer}>
+        <button className={styles.timeEntryButton}>Zeit buchen</button>
+      </div>
+      <button className={styles.closeButton}>X</button>
     </div>
   )
 }

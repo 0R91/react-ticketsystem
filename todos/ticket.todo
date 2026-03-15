@@ -1,12 +1,21 @@
+Wo weiter machen:
+  ☐ Design finalisieren
+  ✔ Grid einbauen für Zeitbuchungen @done(26-03-14 11:03)
+  ✔ "x"- und "Zeit buchen"-Buttons designen @done(26-03-15 10:18)
+
+  
 Ticket Detail:
-☐ Layout bauen
-☐ Ticketdaten anzeigen
+✔ Layout bauen @done(26-03-15 10:48)
+✔ Ticketdaten anzeigen @done(26-03-15 10:48)
+☐ Daten flexibel erstellen per Logik
 ☐ Ticket bearbeiten (title, description, deadline)
 ☐ Status ändern
 ☐ Priority ändern
-☐ Kommentare anzeigen + hinzufügen
-☐ TimeEntries anzeigen + hinzufügen
-☐ Mockdaten erstellen
+☐ Mockdaten auslagern
+
+"Zeit buchen" Formular:
+  ☐ Layout entwickeln
+  ☐ Logik einbauen für Einträge
 
 Ticket List:
 ☐ Liste anzeigen
