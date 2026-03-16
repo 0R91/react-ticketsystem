@@ -1,4 +1,5 @@
 import styles from './ticketDetail.module.css'
+import { Fragment } from 'react/jsx-runtime'
 
 import { ticketMock } from '../../../mock/ticketMock'
 
@@ -33,12 +34,12 @@ function TicketDetail({ ticket }: TicketDetailProps) {
         <div className={styles.headerContent}>
           <div className={styles.title}>
             <p>Ticketname</p>
-            <p>Painting Rebel agent</p>
+            <p>{ticket.name}</p>
           </div>
 
           <div className={styles.id}>
             <p>Ticket-ID</p>
-            <span>#t-001</span>
+            <span>{ticket.id}</span>
           </div>
         </div>
       </div>
@@ -46,30 +47,27 @@ function TicketDetail({ ticket }: TicketDetailProps) {
       <div className={styles.meta}>
         <div className={styles.status}>
           <p>Status</p>
-          <p>In Progress</p>
+          <p>{ticket.status}</p>
         </div>
 
         <div className={styles.priority}>
           <p>Priority</p>
-          <p>Medium</p>
+          <p>{ticket.priority}</p>
         </div>
 
         <div className={styles.deadline}>
           <p>Deadline</p>
-          <p>25.03.2026</p>
+          <p>{ticket.deadline}</p>
         </div>
       </div>
 
       <div className={styles.description}>
         <div className={styles.descriptionText}>
           <p>Beschreibung</p>
-          <p>
-            Die Rebellen-Agenten Miniaturen grundieren und anschließend mit
-            Basisfarben bemalen. Fokus auf Gesichter und Ausrüstung.
-          </p>
+          <p>{ticket.description}</p>
         </div>
       </div>
-
+      {}
       <div className={styles.timeEntries}>
         <div className={styles.timeList}>
           <p>Zeitbuchungen</p>
@@ -79,23 +77,15 @@ function TicketDetail({ ticket }: TicketDetailProps) {
             <p className={styles.gridHeader}>Zeit</p>
             <p className={styles.gridHeader}>Tätigkeit</p>
 
-            <p>12.03.2026</p>
-            <p>9:00 - 10:30</p>
-            <p className={styles.gridDescription}>Grundierung</p>
-
-            <p>12.03.2026</p>
-            <p>9:00 - 10:30</p>
-            <p className={styles.gridDescription}>
-              In diesem Ticket werden die Arbeitsschritte zur Bemalung der
-              Rebellen-Agenten dokumentiert. Zuerst erfolgt die Grundierung der
-              Miniaturen, anschließend werden die Basisfarben aufgetragen. Der
-              Fokus liegt dabei besonders auf den Gesichtern sowie der
-              Ausrüstung der Figuren.
-            </p>
-
-            <p>12.03.2026</p>
-            <p>9:00 - 10:30</p>
-            <p className={styles.gridDescription}>Grundierung</p>
+            {ticket.timeEntries.map((timeEntry) => (
+              <Fragment key={timeEntry.id}>
+                <p>{timeEntry.date}</p>
+                <p>
+                  {timeEntry.startTime} - {timeEntry.endTime}
+                </p>
+                <p className={styles.gridDescription}>{timeEntry.activity}</p>
+              </Fragment>
+            ))}
           </div>
         </div>
       </div>
