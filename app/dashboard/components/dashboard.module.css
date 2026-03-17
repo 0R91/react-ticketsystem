@@ -1,12 +1,25 @@
-.tabContainer {
-  border: 1px solid white;
+.dashboardContainer {
+  background-color: var(--background);
+  border-radius: 10px;
+}
+
+.tabHeader {
+  background-color: var(--background);
   display: flex;
   gap: 20px;
   padding: 20px;
 }
 
+.tabContentContainer {
+  padding: 20px;
+}
+
 .button {
+  background-color: var(--main);
+  border: 1px solid var(--accent);
+  border-radius: 10px;
   cursor: pointer;
+  padding: 5px 10px;
 }
 
 .tabContent {
