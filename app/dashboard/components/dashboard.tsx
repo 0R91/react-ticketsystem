@@ -31,7 +31,7 @@ export default function Dashboard({ tabs }: Props) {
         <div
           className={`${styles.tabContent} ${tab === 'Ticket List' ? styles.active : styles.hidden}`}
         >
-          Ticket List
+          <TicketList />
         </div>
 
         <div
