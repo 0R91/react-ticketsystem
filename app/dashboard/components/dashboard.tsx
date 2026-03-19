@@ -28,21 +28,15 @@ export default function Dashboard({ tabs }: Props) {
       </div>
 
       <div className={styles.tabContentContainer}>
-        <div
-          className={`${styles.tabContent} ${tab === 'Ticket List' ? styles.active : styles.hidden}`}
-        >
+        <div className={tab !== 'Ticket List' ? styles.hidden : ''}>
           <TicketList />
         </div>
 
-        <div
-          className={`${styles.tabContent} ${tab === 'Create new Ticket' ? styles.active : styles.hidden}`}
-        >
+        <div className={tab !== 'Create new Ticket' ? styles.hidden : ''}>
           Create new Ticket
         </div>
 
-        <div
-          className={`${styles.tabContent} ${tab === 'Tickets Done' ? styles.active : styles.hidden}`}
-        >
+        <div className={tab !== 'Tickets Done' ? styles.hidden : ''}>
           Tickets Done
         </div>
       </div>
