@@ -27,17 +27,17 @@ interface TicketDetailProps {
 
 function TicketDetail({ ticket }: TicketDetailProps) {
   return (
-    <div className={styles.root}>
+    <div className={styles.wrapper}>
       <div className={styles.header}>
         <h2>Ticket Details</h2>
 
-        <div className={styles.headerContent}>
-          <div className={styles.title}>
+        <div className={styles.headerRow}>
+          <div className={styles.titleBlock}>
             <p>Ticketname</p>
             <p>{ticket.name}</p>
           </div>
 
-          <div className={styles.id}>
+          <div className={styles.idBlock}>
             <p>Ticket-ID</p>
             <span>{ticket.id}</span>
           </div>
@@ -45,37 +45,37 @@ function TicketDetail({ ticket }: TicketDetailProps) {
       </div>
 
       <div className={styles.meta}>
-        <div className={styles.status}>
+        <div className={styles.metaItem}>
           <p>Status</p>
           <p>{ticket.status}</p>
         </div>
 
-        <div className={styles.priority}>
+        <div className={styles.metaItem}>
           <p>Priority</p>
           <p>{ticket.priority}</p>
         </div>
 
-        <div className={styles.deadline}>
+        <div className={styles.metaItem}>
           <p>Deadline</p>
           <p>{ticket.deadline}</p>
         </div>
       </div>
 
-      <div className={styles.description}>
-        <div className={styles.descriptionText}>
+      <div className={styles.desc}>
+        <div className={styles.descText}>
           <p>Beschreibung</p>
           <p>{ticket.description}</p>
         </div>
       </div>
-      {}
-      <div className={styles.timeEntries}>
+
+      <div className={styles.time}>
         <div className={styles.timeList}>
           <p>Zeitbuchungen</p>
 
-          <div className={styles.timeGrid}>
-            <p className={styles.gridHeader}>Datum</p>
-            <p className={styles.gridHeader}>Zeit</p>
-            <p className={styles.gridHeader}>Tätigkeit</p>
+          <div className={styles.grid}>
+            <p className={styles.gridHead}>Datum</p>
+            <p className={styles.gridHead}>Zeit</p>
+            <p className={styles.gridHead}>Tätigkeit</p>
 
             {ticket.timeEntries.map((timeEntry) => (
               <Fragment key={timeEntry.id}>
@@ -83,16 +83,18 @@ function TicketDetail({ ticket }: TicketDetailProps) {
                 <p>
                   {timeEntry.startTime} - {timeEntry.endTime}
                 </p>
-                <p className={styles.gridDescription}>{timeEntry.activity}</p>
+                <p className={styles.gridText}>{timeEntry.activity}</p>
               </Fragment>
             ))}
           </div>
         </div>
       </div>
-      <div className={styles.timeEntryButtonContainer}>
-        <button className={styles.timeEntryButton}>Zeit buchen</button>
+
+      <div className={styles.actions}>
+        <button className={styles.primaryBtn}>Zeit buchen</button>
       </div>
-      <button className={styles.closeButton}>X</button>
+
+      <button className={styles.closeBtn}>X</button>
     </div>
   )
 }

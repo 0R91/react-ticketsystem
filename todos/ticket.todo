@@ -8,11 +8,11 @@ Ticket Detail:
 ✔ Layout bauen @done(26-03-15 10:48)
 ✔ Ticketdaten anzeigen @done(26-03-15 10:48)
 ✔ Mockdaten in test pages importieren und dann sauber im ticketDetails Template einbauen @done(26-03-16 12:13)
-☐ Daten flexibel erstellen per Logik
+✔ Daten flexibel erstellen per Logik @done(26-03-19 11:34)
 ☐ Ticket bearbeiten (title, description, deadline)
 ☐ Status ändern
 ☐ Priority ändern
-☐ Mockdaten auslagern
+✔ Mockdaten auslagern @done(26-03-19 11:34)
 ☐ Alte Entries bearbeiten
 
 "Zeit buchen" Formular:

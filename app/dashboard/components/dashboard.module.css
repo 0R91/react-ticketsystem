@@ -1,29 +1,26 @@
-.dashboardContainer {
+.wrapper {
   background-color: var(--background);
   border-radius: 10px;
 }
 
-.tabHeader {
+.tabBar {
   background-color: var(--background);
   border-bottom: 1px solid var(--accent);
   display: flex;
-  justify-content: space-between;
+  gap: 60px;
   padding: 20px;
 }
 
-.tabContentContainer {
+.content {
   padding: 20px;
 }
 
-.button {
+.tabButton {
   background-color: var(--main);
   border: 1px solid var(--accent);
   border-radius: 10px;
   cursor: pointer;
   padding: 5px 10px;
-}
-
-.tabContent {
 }
 
 .hidden {

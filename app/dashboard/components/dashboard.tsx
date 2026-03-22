@@ -14,11 +14,11 @@ export default function Dashboard({ tabs }: Props) {
   const [tab, setTab] = useState('Ticket List')
 
   return (
-    <div className={styles.dashboardContainer}>
-      <div className={styles.tabHeader}>
+    <div className={styles.wrapper}>
+      <div className={styles.tabBar}>
         {tabsTopic.map((tabTopic) => (
           <button
-            className={styles.button}
+            className={styles.tabButton}
             key={tabTopic}
             onClick={() => setTab(tabTopic)}
           >
@@ -27,7 +27,7 @@ export default function Dashboard({ tabs }: Props) {
         ))}
       </div>
 
-      <div className={styles.tabContentContainer}>
+      <div className={styles.content}>
         <div className={tab !== 'Ticket List' ? styles.hidden : ''}>
           <TicketList />
         </div>

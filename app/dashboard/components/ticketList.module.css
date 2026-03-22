@@ -1,15 +1,15 @@
-.table {
+.ticketTable {
   border-collapse: collapse;
   width: 100%;
 }
 
-.table th,
-.table td {
+.ticketTable th,
+.ticketTable td {
   border-bottom: 1px solid var(--accent);
   padding: 10px 15px;
   text-align: center;
 }
 
-.table th {
+.ticketTable th {
   font-weight: bold;
 }
