@@ -1,0 +1,40 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form > * {
+  padding: 0 10px;
+}
+
+.heading {
+  font-weight: bold;
+}
+
+.meta {
+  display: flex;
+  justify-content: space-between;
+}
+
+.metaItem {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  font-weight: bold;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 10px;
+}
+
+.form input,
+.form textarea {
+  padding: 5px;
+}

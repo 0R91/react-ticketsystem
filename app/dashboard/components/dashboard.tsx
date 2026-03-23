@@ -2,6 +2,8 @@
 
 import styles from './dashboard.module.css'
 import TicketList from './ticketList'
+import TicketForm from './ticketForm'
+
 import { useState } from 'react'
 
 type Props = {
@@ -33,7 +35,7 @@ export default function Dashboard({ tabs }: Props) {
         </div>
 
         <div className={tab !== 'Create new Ticket' ? styles.hidden : ''}>
-          Create new Ticket
+          <TicketForm />
         </div>
 
         <div className={tab !== 'Tickets Done' ? styles.hidden : ''}>
