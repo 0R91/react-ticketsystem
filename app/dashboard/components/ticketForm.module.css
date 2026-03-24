@@ -13,8 +13,10 @@
 }
 
 .meta {
+  border-bottom: 1px solid var(--accent);
   display: flex;
   justify-content: space-between;
+  padding-bottom: 10px;
 }
 
 .metaItem {
@@ -34,7 +36,25 @@
   padding-bottom: 10px;
 }
 
+.inputTitle {
+  padding: 5px 12px;
+}
+
+.textarea {
+  padding: 5px 12px;
+}
+
+.submitBtn {
+  background-color: rgb(61, 161, 61);
+  border-radius: 10px;
+  cursor: pointer;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 5px 12px;
+}
+
 .form input,
 .form textarea {
-  padding: 5px;
+  border: 1px solid var(--accent);
+  border-radius: 10px;
 }

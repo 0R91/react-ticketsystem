@@ -1,0 +1,9 @@
+Ticket Form:
+  ✔ Layout erstellen @done(26-03-23 12:48)
+  ✔ Felder erstellen @done(26-03-23 12:48)
+    ☐ ID muss automatisch erstellt werden
+    ☐ Erstelldatum muss automatisch erstellt werden
+    ☐ Name-Feld
+    ☐ Deadline-Feld
+    ☐ Beschreibung-Feld
+    ☐ Mock-Speichermöglichkeit

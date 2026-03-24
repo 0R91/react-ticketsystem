@@ -1,13 +1,22 @@
 'use client'
 
 import styles from './ticketForm.module.css'
+
 import { useState } from 'react'
 
 export default function TicketForm() {
   const [title, setTitle] = useState('')
 
+  const ticketId = [1, 2, 3, 4, 5]
+
   return (
-    <form className={styles.form}>
+    <form
+      className={styles.form}
+      onSubmit={(e) => {
+        e.preventDefault()
+        console.log('YOYOYO')
+      }}
+    >
       <h2 className={styles.heading}>Ticket Form</h2>
 
       <div className={styles.meta}>
@@ -27,7 +36,7 @@ export default function TicketForm() {
           Ticket-Title
         </label>
         <input
-          id="title"
+          className={styles.inputTitle}
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           placeholder="Bitte gib den Ticket-Title ein"
@@ -48,6 +57,7 @@ export default function TicketForm() {
         </label>
         <input id="deadline" type="date" />
       </div>
+      <button className={styles.submitBtn}>Ticket erstellen</button>
     </form>
   )
 }
