@@ -26,3 +26,7 @@
 .hidden {
   display: none;
 }
+
+tbody tr:last-child td {
+  border: 0;
+}

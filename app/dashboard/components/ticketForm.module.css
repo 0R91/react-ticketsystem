@@ -33,14 +33,17 @@
   flex-direction: column;
   gap: 5px;
   border-bottom: 1px solid var(--accent);
-  padding-bottom: 10px;
+  padding-bottom: 25px;
 }
 
-.inputTitle {
-  padding: 5px 12px;
+.lastField {
+  border-bottom: 0;
+  padding-bottom: 0;
 }
 
-.textarea {
+.inputTitle,
+.textarea,
+.inputDate {
   padding: 5px 12px;
 }
 
