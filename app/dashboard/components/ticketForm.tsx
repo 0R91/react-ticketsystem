@@ -1,53 +1,62 @@
 'use client'
 
 import styles from './ticketForm.module.css'
-
 import { useState } from 'react'
 
 export default function TicketForm() {
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [date, setDate] = useState('')
+  const [ticketList, setTicketList] = useState([])
 
-  const ticketId = []
-  const ticketList = []
+  const today = new Date()
+  const dateToday =
+    String(today.getDate()).padStart(2, '0') +
+    '-' +
+    String(today.getMonth() + 1).padStart(2, '0') +
+    '-' +
+    today.getFullYear()
 
-  const submitForm = () => {
-    console.log('Form')
+  function getNextId(list) {
+    if (list.length === 0) return 1
+    const maxId = Math.max(...list.map((t) => t.id))
+    return maxId + 1
+  }
+
+  const nextId = getNextId(ticketList)
+
+  const submitForm = (e) => {
+    e.preventDefault()
+
+    const formData = {
+      id: nextId,
+      title,
+      description,
+      date,
+      createdAt: dateToday,
+    }
+
     console.log(formData)
-    ticketList.push(formData)
-    console.log(ticketList)
+
+    setTicketList((prev) => [...prev, formData])
     setTitle('')
     setDescription('')
     setDate('')
   }
 
-  const formData = {
-    title: title,
-    description: description,
-    date: date,
-  }
-
   return (
-    <form
-      className={styles.form}
-      onSubmit={(e) => {
-        e.preventDefault()
-        console.log('YOYOYO')
-      }}
-    >
+    <form className={styles.form} onSubmit={submitForm}>
       <h2 className={styles.heading}>Ticket Form</h2>
 
       <div className={styles.meta}>
         <div className={styles.metaItem}>
           <span className={styles.label}>Ticket-ID</span>
-
-          <span>T-001</span>
+          <span>T-{String(nextId).padStart(3, '0')}</span>
         </div>
 
         <div className={styles.metaItem}>
           <span className={styles.label}>Erstelldatum</span>
-          <span>01.03.2026</span>
+          <span>{dateToday}</span>
         </div>
       </div>
 
@@ -56,6 +65,7 @@ export default function TicketForm() {
           Ticket-Title
         </label>
         <input
+          id="title"
           className={styles.inputTitle}
           value={title}
           onChange={(e) => setTitle(e.target.value)}
@@ -66,11 +76,10 @@ export default function TicketForm() {
       <div className={styles.field}>
         <span className={styles.label}>Description</span>
         <textarea
+          value={description}
           placeholder="Beschreibung eingeben..."
           className={styles.textarea}
-          onChange={(e) => {
-            setDescription(e.target.value)
-          }}
+          onChange={(e) => setDescription(e.target.value)}
         />
       </div>
 
@@ -79,14 +88,15 @@ export default function TicketForm() {
           Deadline
         </label>
         <input
+          id="deadline"
           className={styles.inputDate}
           type="date"
-          onChange={(e) => {
-            setDate(e.target.value)
-          }}
+          value={date}
+          onChange={(e) => setDate(e.target.value)}
         />
       </div>
-      <button className={styles.submitBtn} onClick={submitForm}>
+
+      <button type="submit" className={styles.submitBtn}>
         Ticket erstellen
       </button>
     </form>
