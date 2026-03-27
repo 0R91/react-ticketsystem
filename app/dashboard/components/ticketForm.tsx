@@ -6,7 +6,7 @@ import { useState } from 'react'
 export default function TicketForm() {
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
-  const [date, setDate] = useState('')
+  const [deadline, setDeadline] = useState('')
   const [ticketList, setTicketList] = useState([])
 
   const today = new Date()
@@ -32,7 +32,7 @@ export default function TicketForm() {
       id: nextId,
       title,
       description,
-      date,
+      deadline,
       createdAt: dateToday,
     }
 
@@ -41,7 +41,7 @@ export default function TicketForm() {
     setTicketList((prev) => [...prev, formData])
     setTitle('')
     setDescription('')
-    setDate('')
+    setDeadline('')
   }
 
   return (
@@ -89,10 +89,10 @@ export default function TicketForm() {
         </label>
         <input
           id="deadline"
-          className={styles.inputDate}
+          className={styles.inputDeadline}
           type="date"
-          value={date}
-          onChange={(e) => setDate(e.target.value)}
+          value={deadline}
+          onChange={(e) => setDeadline(e.target.value)}
         />
       </div>
 
