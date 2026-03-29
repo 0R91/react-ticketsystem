@@ -7,7 +7,7 @@ export default function Page() {
   useEffect(() => {
     const run = async () => {
       const { data, error } = await supabase
-        .from('ticket')
+        .from('tickets')
         .insert({
           title: 'Test Ticket',
           description: 'Mein erstes Ticket',
