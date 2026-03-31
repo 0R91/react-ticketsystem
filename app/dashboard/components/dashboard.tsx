@@ -3,6 +3,7 @@
 import styles from './dashboard.module.css'
 import TicketList from './ticketList'
 import TicketForm from './ticketForm'
+import TicketDoneList from './ticketDoneList'
 
 import { useState } from 'react'
 
@@ -39,7 +40,7 @@ export default function Dashboard({ tabs }: Props) {
         </div>
 
         <div className={tab !== 'Tickets Done' ? styles.hidden : ''}>
-          Tickets Done
+          <TicketDoneList />
         </div>
       </div>
     </div>
