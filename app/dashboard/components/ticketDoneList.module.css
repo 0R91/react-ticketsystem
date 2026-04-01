@@ -1,0 +1,15 @@
+.ticketTable {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.ticketTable th,
+.ticketTable td {
+  border-bottom: 1px solid var(--accent);
+  padding: 10px 15px;
+  text-align: center;
+}
+
+.ticketTable th {
+  font-weight: bold;
+}

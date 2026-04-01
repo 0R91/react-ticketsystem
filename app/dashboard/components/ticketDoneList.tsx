@@ -1,6 +1,8 @@
 import { supabase } from '@/lib/supabase'
 import { useState, useEffect } from 'react'
 
+import styles from './ticketDoneList.module.css'
+
 type Ticket = {
   id: number
   title: string
@@ -39,19 +41,34 @@ export default function TicketDoneList() {
   }, [])
 
   if (loading) return <p>Lade Tickets...</p>
-
+  console.log(tickets)
   return (
-    <>
-      <ul>
-        {tickets.map((ticket) => (
-          <li key={ticket.id}>
-            <strong>{ticket.title}</strong>
-            <div>Status: {ticket.status}</div>
-            <div>Erstellt: {ticket.created_at}</div>
-            <div>Deadline: {ticket.deadline_at ?? 'Keine Deadline'}</div>
-          </li>
-        ))}
-      </ul>
-    </>
+    <div className={styles.wrapper}>
+      <table className={styles.ticketTable}>
+        <thead>
+          <tr>
+            <th>Ticket ID</th>
+            <th>Name</th>
+            <th>Hours</th>
+            <th>Created</th>
+            <th>Deadline</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {tickets.map((ticket) => (
+            <tr key={ticket.id}>
+              <td>{ticket.id}</td>
+              <td>{ticket.title}</td>
+              <td>5h</td>
+              <td>{ticket.created_at}h</td>
+              <td>{ticket.deadline_at}</td>
+              <td>{ticket.status}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   )
 }
