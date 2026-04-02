@@ -40,6 +40,16 @@ export default function TicketDoneList() {
     fetchTickets()
   }, [])
 
+  const formatDate = (isoString) => {
+    if (!isoString) return ''
+
+    return new Date(isoString)
+      .toLocaleDateString('de-DE', {
+        timeZone: 'UTC',
+      })
+      .replaceAll('-', '.')
+  }
+
   if (loading) return <p>Lade Tickets...</p>
   console.log(tickets)
   return (
@@ -62,8 +72,8 @@ export default function TicketDoneList() {
               <td>{ticket.id}</td>
               <td>{ticket.title}</td>
               <td>5h</td>
-              <td>{ticket.created_at}h</td>
-              <td>{ticket.deadline_at}</td>
+              <td>{formatDate(ticket.created_at)}</td>
+              <td>{formatDate(ticket.deadline_at)}</td>
               <td>{ticket.status}</td>
             </tr>
           ))}

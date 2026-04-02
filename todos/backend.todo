@@ -1,0 +1,46 @@
+Login mit Supabase sauber einrichten:
+☐ Supabase Auth aktivieren
+☐ einen eigenen User anlegen
+
+Datenbank vorbereiten:
+☐ `tickets`-Tabelle um `user_id` ergänzen
+☐ bestehende offene Policies löschen
+☐ RLS auf `tickets` aktiviert lassen
+
+Sichere Policies anlegen:
+☐ `select`: nur eigene Tickets lesen
+☐ `insert`: nur eigene Tickets erstellen
+☐ `update`: nur eigene Tickets ändern
+☐ `delete`: nur eigene Tickets löschen
+
+Typische Regel:
+
+```sql
+auth.uid() = user_id
+```
+
+Code anpassen:
+☐ Login im Code einbauen
+☐ beim Ticket-Erstellen den eingeloggten User holen
+☐ `user_id` mit speichern
+☐ Reads nur noch über Supabase mit Session laufen lassen
+☐ direkte offene Test-Queries entfernen
+
+Frontend anpassen:
+☐ wenn nicht eingeloggt → Login anzeigen
+☐ wenn eingeloggt → Tickets anzeigen
+☐ Formular zum Ticket-Erstellen bauen
+☐ Logout einbauen
+☐ Fehler und Ladezustände anzeigen
+
+Testen:
+☐ eingeloggt: Ticket erstellen klappt
+☐ eingeloggt: nur eigene Tickets sichtbar
+☐ nicht eingeloggt: kein Zugriff
+☐ fremde Tickets ändern/löschen geht nicht
+
+Aufräumen:
+☐ Testdaten löschen
+☐ `console.log` entfernen
+☐ `.env.local` prüfen
+☐ nur notwendige `NEXT_PUBLIC_` Variablen behalten

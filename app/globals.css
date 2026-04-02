@@ -39,8 +39,7 @@ small {
 }
 
 .centerContainer {
-  display: flex;
-  max-width: 1200px;
   margin: 0 auto;
-  justify-content: center;
+  max-width: 1200px;
+  width: 100%;
 }

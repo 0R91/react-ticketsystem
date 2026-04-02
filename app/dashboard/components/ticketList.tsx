@@ -14,7 +14,7 @@ export default function TicketList() {
           <tr>
             <th>Ticket ID</th>
             <th>Name</th>
-            <th>Stunden</th>
+            <th>Hours</th>
             <th>Deadline</th>
           </tr>
         </thead>
