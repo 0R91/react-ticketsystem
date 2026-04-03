@@ -23,7 +23,7 @@ export default function TicketList() {
       const { data, error } = await supabase
         .from('tickets')
         .select('*')
-        .eq('status', 'done')
+        .eq('status', 'open')
         .order('deadline_at', { ascending: true })
         .order('created_at', { ascending: false })
 
