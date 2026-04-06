@@ -19,11 +19,20 @@
 }
 
 .ticketModal {
-  position: fixed;
-  inset: 0;
-  z-index: 1000;
-  display: flex;
-  justify-content: center;
   align-items: center;
   background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  inset: 0;
+  justify-content: center;
+  position: fixed;
+  z-index: 1000;
+}
+
+.ticketModalContent {
+  background-color: var(--background);
+  border: 1px solid var(--accent);
+  border-radius: 12px;
+  height: 50vh;
+  padding: 15px;
+  width: 50vh;
 }
