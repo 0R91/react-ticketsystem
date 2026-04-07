@@ -1,6 +1,6 @@
 import styles from './ticketList.module.css'
 import { supabase } from '@/lib/supabase'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 type Ticket = {
   id: number
@@ -94,6 +94,15 @@ export default function TicketList() {
     const [startHour, startMinute] = startTime.split(':').map(Number)
     const [endHour, endMinute] = endTime.split(':').map(Number)
 
+    if (
+      Number.isNaN(startHour) ||
+      Number.isNaN(startMinute) ||
+      Number.isNaN(endHour) ||
+      Number.isNaN(endMinute)
+    ) {
+      return 0
+    }
+
     const startMinutes = startHour * 60 + startMinute
     const endMinutes = endHour * 60 + endMinute
 
@@ -116,17 +125,15 @@ export default function TicketList() {
     return formatHours(getTicketHoursValue(ticketId))
   }
 
-  const selectedTicketEntries = useMemo(() => {
-    if (!selectedTicket) return []
-    return getEntriesForTicket(selectedTicket.id)
-  }, [selectedTicket, timeEntries])
+  const selectedTicketEntries: TimeEntry[] = selectedTicket
+    ? getEntriesForTicket(selectedTicket.id)
+    : []
 
-  const selectedTicketHours = useMemo(() => {
-    if (!selectedTicket) return '0.00h'
-    return getTicketHours(selectedTicket.id)
-  }, [selectedTicket, timeEntries])
+  const selectedTicketHours: string = selectedTicket
+    ? getTicketHours(selectedTicket.id)
+    : '0.00h'
 
-  const resetNewEntry = () => {
+  const resetNewEntry = (): void => {
     setNewEntry({
       date: '',
       start_time: '',
@@ -135,7 +142,12 @@ export default function TicketList() {
     })
   }
 
-  const handleAddTimeEntry = async () => {
+  const closeModal = (): void => {
+    setSelectedTicket(null)
+    resetNewEntry()
+  }
+
+  const handleAddTimeEntry = async (): Promise<void> => {
     if (!selectedTicket) return
 
     const { date, start_time, end_time, activity } = newEntry
@@ -166,7 +178,7 @@ export default function TicketList() {
       .select()
       .single()
 
-    if (error) {
+    if (error || !data) {
       console.log(error)
       alert('Zeitbuchung konnte nicht gespeichert werden.')
       setSavingEntry(false)
@@ -194,6 +206,7 @@ export default function TicketList() {
               <th>Status</th>
             </tr>
           </thead>
+
           <tbody>
             {tickets.map((ticket) => (
               <tr
@@ -214,13 +227,7 @@ export default function TicketList() {
       </div>
 
       {selectedTicket && (
-        <div
-          className={styles.ticketModal}
-          onClick={() => {
-            setSelectedTicket(null)
-            resetNewEntry()
-          }}
-        >
+        <div className={styles.ticketModal} onClick={closeModal}>
           <div
             className={styles.ticketModalContent}
             onClick={(e) => e.stopPropagation()}
@@ -267,7 +274,10 @@ export default function TicketList() {
               type="time"
               value={newEntry.start_time}
               onChange={(e) =>
-                setNewEntry((prev) => ({ ...prev, start_time: e.target.value }))
+                setNewEntry((prev) => ({
+                  ...prev,
+                  start_time: e.target.value,
+                }))
               }
             />
 
@@ -275,7 +285,10 @@ export default function TicketList() {
               type="time"
               value={newEntry.end_time}
               onChange={(e) =>
-                setNewEntry((prev) => ({ ...prev, end_time: e.target.value }))
+                setNewEntry((prev) => ({
+                  ...prev,
+                  end_time: e.target.value,
+                }))
               }
             />
 
@@ -284,7 +297,10 @@ export default function TicketList() {
               placeholder="Tätigkeit"
               value={newEntry.activity}
               onChange={(e) =>
-                setNewEntry((prev) => ({ ...prev, activity: e.target.value }))
+                setNewEntry((prev) => ({
+                  ...prev,
+                  activity: e.target.value,
+                }))
               }
             />
 
@@ -292,14 +308,7 @@ export default function TicketList() {
               {savingEntry ? 'Speichert...' : 'Zeitbuchung speichern'}
             </button>
 
-            <button
-              onClick={() => {
-                setSelectedTicket(null)
-                resetNewEntry()
-              }}
-            >
-              Schließen
-            </button>
+            <button onClick={closeModal}>Schließen</button>
           </div>
         </div>
       )}
