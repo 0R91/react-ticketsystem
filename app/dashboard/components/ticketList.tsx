@@ -237,78 +237,80 @@ export default function TicketList() {
             <p>
               {selectedTicket.description ?? 'Keine Beschreibung vorhanden.'}
             </p>
-            <p>Erstellt: {formatDate(selectedTicket.created_at)}</p>
-            <p>Deadline: {formatDate(selectedTicket.deadline_at)}</p>
-            <p>Status: {selectedTicket.status}</p>
+            <div className={styles.modalDate}>
+              <p>Erstellt: {formatDate(selectedTicket.created_at)}</p>
+              <p>Deadline: {formatDate(selectedTicket.deadline_at)}</p>
+              <p>Status: {selectedTicket.status}</p>
+            </div>
+            <div>
+              <h3>Zeitbuchungen</h3>
+
+              {selectedTicketEntries.length === 0 ? (
+                <p>Noch keine Zeitbuchungen vorhanden.</p>
+              ) : (
+                <ul>
+                  {selectedTicketEntries.map((entry) => (
+                    <li key={entry.id}>
+                      {formatDate(entry.date)} | {entry.start_time} -{' '}
+                      {entry.end_time} | {entry.activity} |{' '}
+                      {formatHours(
+                        getDurationInHours(entry.start_time, entry.end_time)
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+
             <p>Gesamtstunden: {selectedTicketHours}</p>
 
-            <h3>Zeitbuchungen</h3>
+            <div className={styles.timeEntryInput}>
+              <input
+                type="date"
+                value={newEntry.date}
+                onChange={(e) =>
+                  setNewEntry((prev) => ({ ...prev, date: e.target.value }))
+                }
+              />
 
-            {selectedTicketEntries.length === 0 ? (
-              <p>Noch keine Zeitbuchungen vorhanden.</p>
-            ) : (
-              <ul>
-                {selectedTicketEntries.map((entry) => (
-                  <li key={entry.id}>
-                    {formatDate(entry.date)} | {entry.start_time} -{' '}
-                    {entry.end_time} | {entry.activity} |{' '}
-                    {formatHours(
-                      getDurationInHours(entry.start_time, entry.end_time)
-                    )}
-                  </li>
-                ))}
-              </ul>
-            )}
+              <input
+                type="time"
+                value={newEntry.start_time}
+                onChange={(e) =>
+                  setNewEntry((prev) => ({
+                    ...prev,
+                    start_time: e.target.value,
+                  }))
+                }
+              />
 
-            <h3>Neue Zeitbuchung</h3>
+              <input
+                type="time"
+                value={newEntry.end_time}
+                onChange={(e) =>
+                  setNewEntry((prev) => ({
+                    ...prev,
+                    end_time: e.target.value,
+                  }))
+                }
+              />
 
-            <input
-              type="date"
-              value={newEntry.date}
-              onChange={(e) =>
-                setNewEntry((prev) => ({ ...prev, date: e.target.value }))
-              }
-            />
-
-            <input
-              type="time"
-              value={newEntry.start_time}
-              onChange={(e) =>
-                setNewEntry((prev) => ({
-                  ...prev,
-                  start_time: e.target.value,
-                }))
-              }
-            />
-
-            <input
-              type="time"
-              value={newEntry.end_time}
-              onChange={(e) =>
-                setNewEntry((prev) => ({
-                  ...prev,
-                  end_time: e.target.value,
-                }))
-              }
-            />
-
-            <input
-              type="text"
-              placeholder="Tätigkeit"
-              value={newEntry.activity}
-              onChange={(e) =>
-                setNewEntry((prev) => ({
-                  ...prev,
-                  activity: e.target.value,
-                }))
-              }
-            />
+              <input
+                type="text"
+                placeholder="Tätigkeit"
+                value={newEntry.activity}
+                onChange={(e) =>
+                  setNewEntry((prev) => ({
+                    ...prev,
+                    activity: e.target.value,
+                  }))
+                }
+              />
+            </div>
 
             <button onClick={handleAddTimeEntry} disabled={savingEntry}>
-              {savingEntry ? 'Speichert...' : 'Zeitbuchung speichern'}
+              {savingEntry ? 'Speichert...' : 'Zeit buchen'}
             </button>
-
-            <button onClick={closeModal}>Schließen</button>
           </div>
         </div>
       )}

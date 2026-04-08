@@ -32,7 +32,29 @@
   background-color: var(--background);
   border: 1px solid var(--accent);
   border-radius: 12px;
-  height: 50vh;
-  padding: 15px;
-  width: 50vh;
+  display: flex;
+  flex-direction: column;
+  height: 60vh;
+  justify-content: space-between;
+  padding: 20px 25px;
+  width: 60vh;
+}
+
+.modalDate {
+  border-bottom: 1px solid var(--accent);
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 5px;
+}
+
+.timeEntryInput {
+}
+
+.ticketModal button {
+  background-color: rgb(61, 161, 61);
+  border-radius: 10px;
+  cursor: pointer;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 5px 12px;
 }
