@@ -44,12 +44,24 @@
   border-bottom: 1px solid var(--accent);
   display: flex;
   justify-content: space-between;
-  padding-bottom: 5px;
+  padding-bottom: 10px;
 }
 
-.timeEntryInput {
+.timeEntryContainer {
+  border-bottom: 1px solid var(--accent);
+  padding: 10px;
 }
 
+.entryRow {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 12px;
+}
+
+.dateTime {
+  display: flex;
+  gap: 8px;
+}
 .ticketModal button {
   background-color: rgb(61, 161, 61);
   border-radius: 10px;

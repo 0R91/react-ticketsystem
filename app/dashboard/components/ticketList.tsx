@@ -28,18 +28,31 @@ type NewTimeEntry = {
   activity: string
 }
 
+type EditTicket = {
+  title: string
+  description: string
+  deadline_at: string
+}
+
 export default function TicketList() {
   const [tickets, setTickets] = useState<Ticket[]>([])
   const [timeEntries, setTimeEntries] = useState<TimeEntry[]>([])
   const [loading, setLoading] = useState(true)
   const [selectedTicket, setSelectedTicket] = useState<Ticket | null>(null)
   const [savingEntry, setSavingEntry] = useState(false)
+  const [savingTicket, setSavingTicket] = useState(false)
 
   const [newEntry, setNewEntry] = useState<NewTimeEntry>({
     date: '',
     start_time: '',
     end_time: '',
     activity: '',
+  })
+
+  const [editTicket, setEditTicket] = useState<EditTicket>({
+    title: '',
+    description: '',
+    deadline_at: '',
   })
 
   useEffect(() => {
@@ -84,8 +97,24 @@ export default function TicketList() {
     })
   }
 
-  const formatHours = (value: number): string => {
-    return `${value.toFixed(2)}h`
+  const formatTime = (time: string | null): string => {
+    if (!time) return ''
+
+    const [hours, minutes] = time.split(':')
+    if (!hours || !minutes) return time
+
+    return `${hours}:${minutes}`
+  }
+
+  const formatHoursMinutes = (value: number): string => {
+    const totalMinutes = Math.round(value * 60)
+
+    const hours = Math.floor(totalMinutes / 60)
+    const minutes = totalMinutes % 60
+
+    const paddedMinutes = minutes.toString().padStart(2, '0')
+
+    return `${hours}:${paddedMinutes}`
   }
 
   const getDurationInHours = (startTime: string, endTime: string): number => {
@@ -122,7 +151,7 @@ export default function TicketList() {
   }
 
   const getTicketHours = (ticketId: number): string => {
-    return formatHours(getTicketHoursValue(ticketId))
+    return formatHoursMinutes(getTicketHoursValue(ticketId))
   }
 
   const selectedTicketEntries: TimeEntry[] = selectedTicket
@@ -142,9 +171,65 @@ export default function TicketList() {
     })
   }
 
+  const resetEditTicket = (): void => {
+    setEditTicket({
+      title: '',
+      description: '',
+      deadline_at: '',
+    })
+  }
+
+  const openModal = (ticket: Ticket): void => {
+    setSelectedTicket(ticket)
+    setEditTicket({
+      title: ticket.title ?? '',
+      description: ticket.description ?? '',
+      deadline_at: ticket.deadline_at ? ticket.deadline_at.slice(0, 10) : '',
+    })
+  }
+
   const closeModal = (): void => {
     setSelectedTicket(null)
     resetNewEntry()
+    resetEditTicket()
+  }
+
+  const handleSaveTicket = async (): Promise<void> => {
+    if (!selectedTicket) return
+
+    if (!editTicket.title.trim()) {
+      alert('Der Titel darf nicht leer sein.')
+      return
+    }
+
+    setSavingTicket(true)
+
+    const payload = {
+      title: editTicket.title.trim(),
+      description: editTicket.description.trim() || null,
+      deadline_at: editTicket.deadline_at || null,
+    }
+
+    const { data, error } = await supabase
+      .from('tickets')
+      .update(payload)
+      .eq('id', selectedTicket.id)
+      .select()
+      .single()
+
+    if (error || !data) {
+      console.log(error)
+      alert('Ticket konnte nicht gespeichert werden.')
+      setSavingTicket(false)
+      return
+    }
+
+    setTickets((prev) =>
+      prev.map((ticket) => (ticket.id === data.id ? data : ticket))
+    )
+
+    setSelectedTicket(data)
+    setSavingTicket(false)
   }
 
   const handleAddTimeEntry = async (): Promise<void> => {
@@ -212,7 +297,7 @@ export default function TicketList() {
               <tr
                 key={ticket.id}
                 className={styles.ticketRow}
-                onClick={() => setSelectedTicket(ticket)}
+                onClick={() => openModal(ticket)}
               >
                 <td>{ticket.id}</td>
                 <td>{ticket.title}</td>
@@ -232,30 +317,71 @@ export default function TicketList() {
             className={styles.ticketModalContent}
             onClick={(e) => e.stopPropagation()}
           >
-            <h2>{selectedTicket.title}</h2>
+            <div className={styles.editFields}>
+              <input
+                type="text"
+                value={editTicket.title}
+                onChange={(e) =>
+                  setEditTicket((prev) => ({
+                    ...prev,
+                    title: e.target.value,
+                  }))
+                }
+                placeholder="Titel"
+              />
 
-            <p>
-              {selectedTicket.description ?? 'Keine Beschreibung vorhanden.'}
-            </p>
+              <textarea
+                value={editTicket.description}
+                onChange={(e) =>
+                  setEditTicket((prev) => ({
+                    ...prev,
+                    description: e.target.value,
+                  }))
+                }
+                placeholder="Beschreibung"
+                rows={4}
+              />
+
+              <input
+                type="date"
+                value={editTicket.deadline_at}
+                onChange={(e) =>
+                  setEditTicket((prev) => ({
+                    ...prev,
+                    deadline_at: e.target.value,
+                  }))
+                }
+              />
+            </div>
+
             <div className={styles.modalDate}>
-              <p>Erstellt: {formatDate(selectedTicket.created_at)}</p>
+              <p>Created: {formatDate(selectedTicket.created_at)}</p>
               <p>Deadline: {formatDate(selectedTicket.deadline_at)}</p>
               <p>Status: {selectedTicket.status}</p>
             </div>
-            <div>
-              <h3>Zeitbuchungen</h3>
+
+            <button onClick={handleSaveTicket} disabled={savingTicket}>
+              {savingTicket ? 'Speichert...' : 'Ticket speichern'}
+            </button>
+
+            <div className={styles.timeEntryContainer}>
+              <h3>Time stamps</h3>
 
               {selectedTicketEntries.length === 0 ? (
-                <p>Noch keine Zeitbuchungen vorhanden.</p>
+                <p>No time stamps available yet</p>
               ) : (
                 <ul>
                   {selectedTicketEntries.map((entry) => (
-                    <li key={entry.id}>
-                      {formatDate(entry.date)} | {entry.start_time} -{' '}
-                      {entry.end_time} | {entry.activity} |{' '}
-                      {formatHours(
-                        getDurationInHours(entry.start_time, entry.end_time)
-                      )}
+                    <li key={entry.id} className={styles.entryRow}>
+                      <span className={styles.dateTime}>
+                        <span>{formatDate(entry.date)}</span>
+                        <span>
+                          {formatTime(entry.start_time)} –{' '}
+                          {formatTime(entry.end_time)}
+                        </span>
+                      </span>
+
+                      <span>{entry.activity}</span>
                     </li>
                   ))}
                 </ul>
