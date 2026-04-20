@@ -281,7 +281,7 @@ export default function TicketList() {
 
   return (
     <>
-      <TicketTable tickets={tickets} />
+      <TicketTable tickets={tickets} timeEntries={timeEntries} />
 
       {selectedTicket && (
         <div className={styles.ticketModal} onClick={closeModal}>
