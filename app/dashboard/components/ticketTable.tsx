@@ -12,6 +12,7 @@ type Ticket = {
 type TicketTableProps = {
   tickets: Ticket[]
   timeEntries: TimeEntry[]
+  openModal: (ticket: Ticket) => void
 }
 
 type TimeEntry = {
@@ -27,6 +28,7 @@ type TimeEntry = {
 export default function TicketTable({
   tickets,
   timeEntries,
+  openModal,
 }: TicketTableProps) {
   const getTicketHours = (ticketId: number): string => {
     return formatHoursMinutes(getTicketHoursValue(ticketId))
