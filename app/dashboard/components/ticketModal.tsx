@@ -2,9 +2,21 @@ import styles from './ticketModal.module.css'
 
 type TicketModalProps = {
   closeModal: () => void
+  editTicket: EditTicket
+  setEditTicket: React.Dispatch<React.SetStateAction<EditTicket>>
 }
 
-export default function TicketModal({ closeModal }: TicketModalProps) {
+type EditTicket = {
+  title: string
+  description: string
+  deadline_at: string
+}
+
+export default function TicketModal({
+  closeModal,
+  editTicket,
+  setEditTicket,
+}: TicketModalProps) {
   return (
     <div className={styles.ticketModal} onClick={closeModal}>
       <div
