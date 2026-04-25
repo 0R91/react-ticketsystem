@@ -4,6 +4,9 @@ type TicketModalProps = {
   closeModal: () => void
   editTicket: EditTicket
   setEditTicket: React.Dispatch<React.SetStateAction<EditTicket>>
+  selectedTicket: Ticket
+  handleSaveTicket: () => void
+  savingTicket: boolean
 }
 
 type EditTicket = {
@@ -12,10 +15,33 @@ type EditTicket = {
   deadline_at: string
 }
 
+type Ticket = {
+  id: number
+  title: string
+  description: string | null
+  created_at: string
+  deadline_at: string | null
+  status: string
+}
+
+const formatDate = (isoString: string | null): string => {
+  if (!isoString) return ''
+
+  return new Date(isoString).toLocaleDateString('de-DE', {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+    timeZone: 'UTC',
+  })
+}
+
 export default function TicketModal({
   closeModal,
   editTicket,
   setEditTicket,
+  selectedTicket,
+  handleSaveTicket,
+  savingTicket,
 }: TicketModalProps) {
   return (
     <div className={styles.ticketModal} onClick={closeModal}>
