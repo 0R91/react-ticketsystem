@@ -5,8 +5,14 @@ type TicketModalProps = {
   editTicket: EditTicket
   setEditTicket: React.Dispatch<React.SetStateAction<EditTicket>>
   selectedTicket: Ticket
-  handleSaveTicket: () => void
+  handleSaveTicket: () => Promise<void>
   savingTicket: boolean
+  selectedTicketEntries: TimeEntry[]
+  selectedTicketHours: string
+  newEntry: NewTimeEntry
+  setNewEntry: React.Dispatch<React.SetStateAction<NewTimeEntry>>
+  handleAddTimeEntry: () => Promise<void>
+  savingEntry: boolean
 }
 
 type EditTicket = {
@@ -24,6 +30,23 @@ type Ticket = {
   status: string
 }
 
+type TimeEntry = {
+  id: number
+  ticket_id: number
+  date: string
+  start_time: string
+  end_time: string
+  activity: string
+  created_at: string
+}
+
+type NewTimeEntry = {
+  date: string
+  start_time: string
+  end_time: string
+  activity: string
+}
+
 const formatDate = (isoString: string | null): string => {
   if (!isoString) return ''
 
@@ -35,6 +58,15 @@ const formatDate = (isoString: string | null): string => {
   })
 }
 
+const formatTime = (time: string | null): string => {
+  if (!time) return ''
+
+  const [hours, minutes] = time.split(':')
+  if (!hours || !minutes) return time
+
+  return `${hours}:${minutes}`
+}
+
 export default function TicketModal({
   closeModal,
   editTicket,
@@ -42,6 +74,12 @@ export default function TicketModal({
   selectedTicket,
   handleSaveTicket,
   savingTicket,
+  selectedTicketEntries,
+  selectedTicketHours,
+  newEntry,
+  setNewEntry,
+  handleAddTimeEntry,
+  savingEntry,
 }: TicketModalProps) {
   return (
     <div className={styles.ticketModal} onClick={closeModal}>

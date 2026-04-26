@@ -296,6 +296,12 @@ export default function TicketList() {
           selectedTicket={selectedTicket}
           handleSaveTicket={handleSaveTicket}
           savingTicket={savingTicket}
+          selectedTicketEntries={selectedTicketEntries}
+          selectedTicketHours={selectedTicketHours}
+          newEntry={newEntry}
+          setNewEntry={setNewEntry}
+          handleAddTimeEntry={handleAddTimeEntry}
+          savingEntry={savingEntry}
         />
       )}
     </>
