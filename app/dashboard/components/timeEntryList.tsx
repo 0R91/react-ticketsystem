@@ -1,3 +1,5 @@
+import styles from './timeEntry.module.css'
+
 export default function TimeEntryList() {
   return (
     <div className={styles.timeEntryContainer}>
