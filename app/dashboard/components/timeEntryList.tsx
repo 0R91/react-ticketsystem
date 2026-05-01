@@ -1,10 +1,25 @@
 import styles from './timeEntry.module.css'
 
-export default function TimeEntryList() {
+type TimeEntryListProps = {
+  selectedTicketEntries: TimeEntry[]
+}
+
+type TimeEntry = {
+  id: number
+  ticket_id: number
+  date: string
+  start_time: string
+  end_time: string
+  activity: string
+  created_at: string
+}
+
+export default function TimeEntryList({
+  selectedTicketEntries,
+}: TimeEntryListProps) {
   return (
     <div className={styles.timeEntryContainer}>
-      <h3>Time stamps</h3>
-
+      <h3>Time stamps</h3>d
       {selectedTicketEntries.length === 0 ? (
         <p>No time stamps available yet</p>
       ) : (
