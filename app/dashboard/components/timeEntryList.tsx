@@ -14,6 +14,17 @@ type TimeEntry = {
   created_at: string
 }
 
+const formatDate = (isoString: string | null): string => {
+  if (!isoString) return ''
+
+  return new Date(isoString).toLocaleDateString('de-DE', {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+    timeZone: 'UTC',
+  })
+}
+
 export default function TimeEntryList({
   selectedTicketEntries,
 }: TimeEntryListProps) {
