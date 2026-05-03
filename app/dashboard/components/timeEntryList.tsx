@@ -25,6 +25,15 @@ const formatDate = (isoString: string | null): string => {
   })
 }
 
+const formatTime = (time: string | null): string => {
+  if (!time) return ''
+
+  const [hours, minutes] = time.split(':')
+  if (!hours || !minutes) return time
+
+  return `${hours}:${minutes}`
+}
+
 export default function TimeEntryList({
   selectedTicketEntries,
 }: TimeEntryListProps) {
