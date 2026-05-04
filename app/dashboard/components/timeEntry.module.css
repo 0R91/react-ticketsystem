@@ -1,0 +1,15 @@
+.timeEntryContainer {
+  border-bottom: 1px solid var(--accent);
+  padding: 10px;
+}
+
+.entryRow {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 12px;
+}
+
+.dateTime {
+  display: flex;
+  gap: 8px;
+}
