@@ -39,7 +39,7 @@ export default function TimeEntryList({
 }: TimeEntryListProps) {
   return (
     <div className={styles.timeEntryContainer}>
-      <h3>Time stamps</h3>d
+      <h3>Time stamps</h3>
       {selectedTicketEntries.length === 0 ? (
         <p>No time stamps available yet</p>
       ) : (
