@@ -35,6 +35,7 @@ type EditTicket = {
   title: string
   description: string
   deadline_at: string
+  status: string
 }
 
 export default function TicketList() {
@@ -56,6 +57,7 @@ export default function TicketList() {
     title: '',
     description: '',
     deadline_at: '',
+    status: 'open',
   })
 
   useEffect(() => {
@@ -179,6 +181,7 @@ export default function TicketList() {
       title: '',
       description: '',
       deadline_at: '',
+      status: 'open',
     })
   }
 
@@ -188,6 +191,7 @@ export default function TicketList() {
       title: ticket.title ?? '',
       description: ticket.description ?? '',
       deadline_at: ticket.deadline_at ? ticket.deadline_at.slice(0, 10) : '',
+      status: ticket.status ?? 'open',
     })
   }
 
@@ -211,6 +215,7 @@ export default function TicketList() {
       title: editTicket.title.trim(),
       description: editTicket.description.trim() || null,
       deadline_at: editTicket.deadline_at || null,
+      status: editTicket.status,
     }
 
     const { data, error } = await supabase

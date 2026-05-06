@@ -21,6 +21,7 @@ type EditTicket = {
   title: string
   description: string
   deadline_at: string
+  status: string
 }
 
 type Ticket = {
@@ -148,6 +149,19 @@ export default function TicketModal({
               setNewEntry((prev) => ({ ...prev, date: e.target.value }))
             }
           />
+
+          <select
+            value={editTicket.status}
+            onChange={(e) =>
+              setEditTicket((prev) => ({
+                ...prev,
+                status: e.target.value,
+              }))
+            }
+          >
+            <option value="open">Open</option>
+            <option value="done">Done</option>
+          </select>
 
           <input
             type="time"
