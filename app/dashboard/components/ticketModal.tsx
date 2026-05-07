@@ -91,6 +91,7 @@ export default function TicketModal({
         onClick={(e) => e.stopPropagation()}
       >
         <div className={styles.editFields}>
+          <h3>Title</h3>
           <input
             type="text"
             value={editTicket.title}
@@ -102,7 +103,7 @@ export default function TicketModal({
             }
             placeholder="Titel"
           />
-
+          <h3>Description</h3>
           <textarea
             value={editTicket.description}
             onChange={(e) =>
